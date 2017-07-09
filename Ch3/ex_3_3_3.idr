@@ -20,4 +20,4 @@ multMatrix xs ys = transposeMat (map (multColumn xs) (transposeMat ys))
     where
         multColumn: Num a => Vect n (Vect m a) -> Vect m a -> Vect n a
         multColumn [] ys = []
-        multColumn xs ys = map (\x => foldr (+) 0 (zipWith (*) x ys)) xs
+        multColumn xs ys = map (\x => sum (zipWith (*) x ys)) xs
