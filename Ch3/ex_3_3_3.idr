@@ -16,8 +16,7 @@ addMatrix (x :: xs) (y :: ys) = (zipWith (+) x y) :: addMatrix xs ys
 
 
 multMatrix: Num a => Vect n (Vect m a) -> Vect m (Vect p a) -> Vect n (Vect p a)
-multMatrix xs ys = let yTrans = transposeMat ys in
-                    transposeMat (map (\y => multColumn xs y) yTrans)
+multMatrix xs ys = transposeMat (map (multColumn xs) (transposeMat ys))
     where
         multColumn: Num a => Vect n (Vect m a) -> Vect m a -> Vect n a
         multColumn [] ys = []
